@@ -1,19 +1,15 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
+import java.util.Set;
+
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootTable;
-
-import java.util.Map;
-import java.util.Set;
 
 //this class configures loot tables for blocks. This is important, as without it blocks will not drop anything
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
