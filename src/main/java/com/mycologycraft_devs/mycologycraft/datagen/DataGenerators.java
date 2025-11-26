@@ -1,7 +1,6 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
-//THIS CLASS IS INCREDIBLY IMPORTANT
 //It's used to generate the json files that tell the game how to render, tag, drop, etc. every item
 //you can create json files manually if it would be faster, but for the most part use the datagen
 //when you change something around here, run the DataGen configuration to generate the data
