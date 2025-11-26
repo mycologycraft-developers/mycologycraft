@@ -1,8 +1,10 @@
 package com.mycologycraft_devs.mycologycraft.block;
 
+import java.util.function.Supplier;
+
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
-import com.mycologycraft_devs.mycologycraft.MycologyCraft;
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -11,8 +13,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
 
 public class ModBlocks {
     // Create a Deferred Register to hold Blocks which will all be registered under the "mycologycraft" namespace
