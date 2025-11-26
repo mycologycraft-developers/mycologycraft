@@ -1,4 +1,5 @@
-# eclipse
+# editors
+## eclipse
 bin
 *.launch
 .settings
@@ -6,12 +7,15 @@ bin
 .classpath
 .project
 
-# idea
+## idea
 out
 *.ipr
 *.iws
 *.iml
 .idea
+
+## vscode
+.vscode
 
 # gradle
 build
