@@ -1,12 +1,16 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 //It's used to generate the json files that tell the game how to render, tag, drop, etc. every item
 //you can create json files manually if it would be faster, but for the most part use the datagen
 //when you change something around here, run the DataGen configuration to generate the data
 
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
-import com.mycologycraft_devs.mycologycraft.MycologyCraft;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -17,10 +21,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = MycologyCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
