@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "mycologycraft:block/example_block"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+// 1.21	2025-11-26T17:08:45.6473165	Block States: mycologycraft
+dea25117943c7c7b02846459498b9756f173d46f assets/mycologycraft/blockstates/example_block.json
+323f8ec53b29f9aa74612580da905ee5c2f86652 assets/mycologycraft/models/block/example_block.json
+872fafee76cb76d8c30f9b70b7f56a620189cfe6 assets/mycologycraft/models/item/example_block.json
