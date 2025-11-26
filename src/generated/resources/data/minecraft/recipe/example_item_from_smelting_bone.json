@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "example",
+  "ingredient": {
+    "item": "minecraft:bone"
+  },
+  "result": {
+    "count": 1,
+    "id": "mycologycraft:example_item"
+  }
+}

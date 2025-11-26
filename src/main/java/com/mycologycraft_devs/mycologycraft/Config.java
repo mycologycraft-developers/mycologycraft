@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package com.mycologycraft_devs.mycologycraft;
 
 import java.util.List;
 import java.util.Set;

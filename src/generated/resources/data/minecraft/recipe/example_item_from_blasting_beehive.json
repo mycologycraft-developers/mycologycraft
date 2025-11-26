@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "example",
+  "ingredient": {
+    "item": "minecraft:beehive"
+  },
+  "result": {
+    "count": 1,
+    "id": "mycologycraft:example_item"
+  }
+}
