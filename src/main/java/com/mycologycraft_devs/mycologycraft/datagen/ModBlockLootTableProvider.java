@@ -25,6 +25,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
 
         dropSelf(ModBlocks.EXAMPLE_BLOCK.get());
+				dropSelf(ModBlocks.EXAMPLE_MUSHROOM_STEM.get());
+				dropSelf(ModBlocks.EXAMPLE_MUSHROOM_BLOCK.get());
 
     }
 
