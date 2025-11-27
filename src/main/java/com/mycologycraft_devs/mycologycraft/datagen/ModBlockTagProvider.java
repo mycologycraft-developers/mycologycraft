@@ -27,5 +27,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.EXAMPLE_BLOCK.get());
+
+        tag(BlockTags.MUSHROOM_GROW_BLOCK)
+                .add(ModBlocks.MUSHROOM_SPAWNING_BLOCK.get());
     }
 }
