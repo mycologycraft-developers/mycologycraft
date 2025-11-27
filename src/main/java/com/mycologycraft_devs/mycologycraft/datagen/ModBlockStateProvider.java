@@ -5,8 +5,11 @@ import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -42,11 +45,101 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			blockItem(stemBlock, "_inventory");
 			blockItem(capBlock, "_inventory");
 
-			models().singleTexture(stemModelName, parentTexture, stemTexture);
-			models().singleTexture(capModelName, parentTexture, capTexture);
-			models().singleTexture(capInsideModelName, parentTexture, insideTexture);
+			BlockModelBuilder stemModel = models().singleTexture(stemModelName, parentTexture, stemTexture);
+			BlockModelBuilder capModel = models().singleTexture(capModelName, parentTexture, capTexture);
+			BlockModelBuilder insideModel = models().singleTexture(capInsideModelName, parentTexture, insideTexture);
 			models().cubeAll(stemInventoryModelName, stemTexture);
 			models().cubeAll(capInventoryModelName, capTexture);
+
+			MultiPartBlockStateBuilder[] builders = {
+				getMultipartBuilder(stemBlock.get()),
+				getMultipartBuilder(capBlock.get())
+			};
+			BlockModelBuilder[] models = {stemModel, capModel};
+			
+			for (int i = 0; i < builders.length; i++) {
+				builders[i]
+					.part()
+					.modelFile(models[i])
+					.addModel()
+					.condition(BlockStateProperties.NORTH, true)
+					.end()
+					.part()
+					.modelFile(insideModel)
+					.addModel()
+					.condition(BlockStateProperties.NORTH, false)
+					.end()
+					
+					.part()
+					.modelFile(models[i])
+					.uvLock(true)
+					.rotationY(90)
+					.addModel()
+					.condition(BlockStateProperties.EAST, true)
+					.end()
+					.part()
+					.modelFile(insideModel)
+					.rotationY(90)
+					.addModel()
+					.condition(BlockStateProperties.EAST, false)
+					.end()
+					
+					.part()
+					.modelFile(models[i])
+					.uvLock(true)
+					.rotationY(180)
+					.addModel()
+					.condition(BlockStateProperties.SOUTH, true)
+					.end()
+					.part()
+					.modelFile(insideModel)
+					.rotationY(180)
+					.addModel()
+					.condition(BlockStateProperties.SOUTH, false)
+					.end()
+					
+					.part()
+					.modelFile(models[i])
+					.uvLock(true)
+					.rotationY(270)
+					.addModel()
+					.condition(BlockStateProperties.WEST, true)
+					.end()
+					.part()
+					.modelFile(insideModel)
+					.rotationY(270)
+					.addModel()
+					.condition(BlockStateProperties.WEST, false)
+					.end()
+					
+					.part()
+					.modelFile(models[i])
+					.uvLock(true)
+					.rotationX(270)
+					.addModel()
+					.condition(BlockStateProperties.UP, true)
+					.end()
+					.part()
+					.modelFile(insideModel)
+					.rotationX(270)
+					.addModel()
+					.condition(BlockStateProperties.UP, false)
+					.end()
+					
+					.part()
+					.modelFile(models[i])
+					.uvLock(true)
+					.rotationX(90)
+					.addModel()
+					.condition(BlockStateProperties.DOWN, true)
+					.end()
+					.part()
+					.modelFile(insideModel)
+					.rotationX(90)
+					.addModel()
+					.condition(BlockStateProperties.DOWN, false)
+					.end();
+			}
 		}
 
     //registers a cube block with an item
