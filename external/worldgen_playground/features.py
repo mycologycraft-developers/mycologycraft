@@ -5,7 +5,7 @@ A tool for testing and visualizing Minecraft feature generation algorithms.
 """
 
 import random
-from typing import Callable, Dict, Optional, Tuple
+from typing import Callable, Dict, List, Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -338,6 +338,57 @@ def run_interactive(feature_func: Callable[[World, SeededRandom], None],
 	# Show the plot (this blocks until window is closed)
 	plt.show()
 
+# ========================================
+# =============== helpers ================
+# ========================================
+def is_in_circle(x: int, z: int, radius: float, center_x: int = 0, center_z: int = 0) -> bool:
+	# Calculate distance from center to block center
+	dx = x - center_x
+	dz = z - center_z
+	distance_squared = dx**2 + dz**2
+	
+	# Standard formula: include if distance^2 <= (radius + 0.5)^2
+	# The +0.5 accounts for the block's 1x1 size
+	return distance_squared <= (radius + 0.5) ** 2
+
+
+def is_on_circle_border(x: int, z: int, radius: float, center_x: int = 0, center_z: int = 0, border_thickness: float = 0.5) -> bool:
+	# Calculate distance from center to block center
+	dx = x - center_x
+	dz = z - center_z
+	distance = (dx**2 + dz**2) ** 0.5
+	
+	# Check if block is within the outer radius but outside the inner radius
+	outer_radius = radius + 0.5
+	inner_radius = radius - border_thickness - 0.5
+	
+	# Block is on border if it's within outer radius but outside inner radius
+	return distance <= outer_radius and distance > inner_radius
+
+
+def iterate_circle(radius: float, center_x: int = 0, center_z: int = 0, 
+				   callback: Optional[Callable[[int, int], None]] = None,
+				   border_only: bool = False) -> List[Tuple[int, int]]:
+	positions = []
+	radius_int = int(radius) + 1
+	
+	for x in range(center_x - radius_int, center_x + radius_int + 1):
+		for z in range(center_z - radius_int, center_z + radius_int + 1):
+			if border_only:
+				is_valid = is_on_circle_border(x, z, radius, center_x, center_z)
+			else:
+				is_valid = is_in_circle(x, z, radius, center_x, center_z)
+			
+			if is_valid:
+				positions.append((x, z))
+				if callback:
+					callback(x, z)
+	
+	return positions
+
+# ========================================
+# ============ your algorithm ============
+# ========================================
 
 # Example feature generation function
 def example_feature(world: World, random_source: SeededRandom):
@@ -355,6 +406,9 @@ def example_feature(world: World, random_source: SeededRandom):
 				b = random_source.randint(100, 255)
 				world.set_block((x, y, z), (r, g, b))
 
+# ========================================
+# ========================================
+# ========================================
 
 if __name__ == "__main__":
 	# Run interactive visualization
