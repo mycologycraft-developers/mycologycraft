@@ -34,8 +34,8 @@ public class BigMushroomData {
 		ResourceLocation capTexture = provider.blockTexture(capBlock.get());
 		ResourceLocation insideTexture = DataGenHelper.asResource("block/" + capInsideModelName);
 
-		provider.simpleBlockItem(stemBlock.get(), new ModelFile.UncheckedModelFile(DataGenHelper.asResource(stemInventoryModelName)));
-		provider.simpleBlockItem(capBlock.get(), new ModelFile.UncheckedModelFile(DataGenHelper.asResource(capInventoryModelName)));
+		provider.simpleBlockItem(stemBlock.get(), new ModelFile.UncheckedModelFile(DataGenHelper.asResource("block/" + stemInventoryModelName)));
+		provider.simpleBlockItem(capBlock.get(), new ModelFile.UncheckedModelFile(DataGenHelper.asResource("block/" + capInventoryModelName)));
 
 		BlockModelBuilder stemModel = provider.models().singleTexture(stemModelName, parentTexture, stemTexture);
 		BlockModelBuilder capModel = provider.models().singleTexture(capModelName, parentTexture, capTexture);
