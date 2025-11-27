@@ -1,6 +1,6 @@
 package com.mycologycraft_devs.mycologycraft.worldgen;
 
-import com.mycologycraft_devs.mycologycraft.datagen.DataGenHelper;
+import com.mycologycraft_devs.mycologycraft.datagen.helpers.DataGenHelper;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

@@ -2,7 +2,7 @@ package com.mycologycraft_devs.mycologycraft.worldgen;
 
 import java.util.List;
 
-import com.mycologycraft_devs.mycologycraft.datagen.DataGenHelper;
+import com.mycologycraft_devs.mycologycraft.datagen.helpers.DataGenHelper;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;

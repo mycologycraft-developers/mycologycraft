@@ -1,4 +1,4 @@
-package com.mycologycraft_devs.mycologycraft.datagen;
+package com.mycologycraft_devs.mycologycraft.datagen.helpers;
 
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
