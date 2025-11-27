@@ -2,6 +2,7 @@ package com.mycologycraft_devs.mycologycraft.datagen;
 
 
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
+import com.mycologycraft_devs.mycologycraft.datagen.grouped.BigMushroomData;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -21,6 +22,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     //add stuff within this method to register block states and models.
     @Override
     protected void registerStatesAndModels() {
+			BigMushroomData.GenerateBlocktags(this);
+
       blockWithItem(ModBlocks.EXAMPLE_BLOCK);
     }
 
