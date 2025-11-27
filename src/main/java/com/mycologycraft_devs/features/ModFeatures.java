@@ -3,30 +3,25 @@ package com.mycologycraft_devs.features;
 import com.mycologycraft_devs.features.referenceClasses.LakeFeatureAnnotated;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModFeatures {
-	public static Feature<LakeFeatureAnnotated.Configuration> OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM;
+	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(
+		BuiltInRegistries.FEATURE,
+		MycologyCraft.MODID
+	);
 
-	public static void bootstrap(BootstrapContext<Feature<?>> context) {
-		OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM = register(context, registerKey("magma_mycelium_lava_lake"), new LakeFeatureAnnotated(LakeFeatureAnnotated.Configuration.CODEC));
-	}
+	public static final DeferredHolder<Feature<?>, LakeFeatureAnnotated> OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM = FEATURES.register(
+		"magma_mycelium_lava_lake",
+		() -> new LakeFeatureAnnotated(LakeFeatureAnnotated.Configuration.CODEC)
+	);
 
-
-
-	public static ResourceKey<Feature<?>> registerKey(String name) {
-		return ResourceKey.create(Registries.FEATURE, ResourceLocation.fromNamespaceAndPath(MycologyCraft.MODID, name));
-	}
-	
-	private static <FC extends FeatureConfiguration, F extends Feature<FC>> F register(BootstrapContext<Feature<?>> context,
-																																												ResourceKey<Feature<?>> key,
-																																												F feature) {
-		context.register(key, feature);
-		return feature;
+	//method to pass the register to the main mod class
+	public static void register(IEventBus eventBus){
+		FEATURES.register(eventBus);
 	}
 }

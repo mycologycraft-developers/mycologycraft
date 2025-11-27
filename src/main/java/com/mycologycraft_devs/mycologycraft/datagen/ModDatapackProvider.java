@@ -4,7 +4,6 @@ package com.mycologycraft_devs.mycologycraft.datagen;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import com.mycologycraft_devs.features.ModFeatures;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 import com.mycologycraft_devs.mycologycraft.worldgen.ModBiomeModifiers;
 import com.mycologycraft_devs.mycologycraft.worldgen.ModConfiguredFeatures;
@@ -22,7 +21,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
 
 		public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-							.add(Registries.FEATURE, ModFeatures::bootstrap)
+							// .add(Registries.FEATURE, ModFeatures::bootstrap)
 							.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
 							.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
 							.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);

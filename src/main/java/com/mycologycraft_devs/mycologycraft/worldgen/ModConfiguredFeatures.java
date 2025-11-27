@@ -20,7 +20,7 @@ public class ModConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM = registerKey("magma_mycelium_lava_lake");
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-		register(context, OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM, ModFeatures.OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM,
+		register(context, OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM, ModFeatures.OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM.get(),
 				new LakeFeatureAnnotated.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(ModBlocks.EXAMPLE_BLOCK.get())));
 	}
 
