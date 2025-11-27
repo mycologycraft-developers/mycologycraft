@@ -22,7 +22,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
-
+        blockWithItem(ModBlocks.MUSHROOM_SPAWNING_BLOCK);
     }
 
     //registers a cube block with an item
