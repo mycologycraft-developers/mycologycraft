@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
 
-import com.mycologycraft_devs.mycologycraft.block.MushroomSpawningBlock;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
