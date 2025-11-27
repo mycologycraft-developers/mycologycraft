@@ -3,10 +3,11 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.mycologycraft_devs.mycologycraft.worldgen.referenceClasses;
+package com.mycologycraft_devs.features.referenceClasses;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -21,14 +22,14 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 
-public class LakeFeatureAnnotated extends Feature<Configuration> {
+public class LakeFeatureAnnotated extends Feature<LakeFeatureAnnotated.Configuration> {
 	private static final BlockState AIR;
 
-	public LakeFeatureAnnotated(Codec<Configuration> codec) {
+	public LakeFeatureAnnotated(Codec<LakeFeatureAnnotated.Configuration> codec) {
 		super(codec);
 	}
 
-	public boolean place(FeaturePlaceContext<Configuration> context) {
+	public boolean place(FeaturePlaceContext<LakeFeatureAnnotated.Configuration> context) {
 		BlockPos blockpos = context.origin();
 		WorldGenLevel worldgenlevel = context.level();
 		RandomSource randomsource = context.random();
@@ -151,6 +152,6 @@ public class LakeFeatureAnnotated extends Feature<Configuration> {
 	}
 
 	public static record Configuration(BlockStateProvider fluid, BlockStateProvider barrier) implements FeatureConfiguration {
-		public static final Codec<Configuration> CODEC = RecordCodecBuilder.create((p_190962_) -> p_190962_.group(BlockStateProvider.CODEC.fieldOf("fluid").forGetter(Configuration::fluid), BlockStateProvider.CODEC.fieldOf("barrier").forGetter(Configuration::barrier)).apply(p_190962_, Configuration::new));
+		public static final Codec<LakeFeatureAnnotated.Configuration> CODEC = RecordCodecBuilder.create((p_190962_) -> p_190962_.group(BlockStateProvider.CODEC.fieldOf("fluid").forGetter(Configuration::fluid), BlockStateProvider.CODEC.fieldOf("barrier").forGetter(Configuration::barrier)).apply(p_190962_, Configuration::new));
 	}
 }
