@@ -19,10 +19,10 @@ public class MushroomSpawningBlock extends Block {
         // Custom logic for mushroom spawning can be added here
 
         if (random.nextInt(100) < 100) { // 100% chance to spawn a mushroom
-            // Example: spawn a mushroom block above this block if the space is empty
+            // sspawn a custom mushroom block above if the space is empty
             BlockPos abovePos = pos.above();
             if (world.isEmptyBlock(abovePos)) {
-                world.setBlockAndUpdate(abovePos, net.minecraft.world.level.block.Blocks.BROWN_MUSHROOM.defaultBlockState());
+                world.setBlockAndUpdate(abovePos, ModBlocks.GROWABLE_MUSHROOM.get().defaultBlockState());
             }
         }
     }

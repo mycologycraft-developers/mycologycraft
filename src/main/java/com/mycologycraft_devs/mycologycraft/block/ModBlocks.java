@@ -29,6 +29,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MUSHROOM_SPAWNING_BLOCK = registerBlock("mushroom_spawning_block",
             () -> new MushroomSpawningBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.6f)));
 
+    public static final DeferredBlock<Block> GROWABLE_MUSHROOM = registerBlock("growable_mushroom",
+            () -> new GrowableMushroom(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.2f)));
 
     //helper method that will call to register a block and then register an item for the block using the helper method below
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

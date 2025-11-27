@@ -26,7 +26,7 @@ public class ModCreativeTab {
                         output.accept(ModItems.EXAMPLE_ITEM);
                         output.accept(ModBlocks.EXAMPLE_BLOCK);
                         output.accept(ModBlocks.MUSHROOM_SPAWNING_BLOCK);
-
+                        output.accept(ModBlocks.GROWABLE_MUSHROOM);
                     }).build());
 
     //    Alternate method that can be used to add an item from elsewhere
