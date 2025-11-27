@@ -21,7 +21,7 @@ public class ModConfiguredFeatures {
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		register(context, OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM, ModFeatures.OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM.get(),
-				new LakeFeatureAnnotated.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(ModBlocks.EXAMPLE_BLOCK.get())));
+				new LakeFeatureAnnotated.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(ModBlocks.EXAMPLE_BLOCK.get()), BlockStateProvider.simple(Blocks.HONEY_BLOCK)));
 	}
 
 
