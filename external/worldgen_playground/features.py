@@ -136,8 +136,22 @@ def visualize_world(world: World, title: str = "Minecraft Feature Visualization"
 		voxel_colors[idx_x, idx_y, idx_z] = (r/255.0, g/255.0, b/255.0)
 	
 	# Draw cubes manually for precise positioning
-	def draw_cube(ax, x, y, z, color, size=1.0):
-		"""Draw a cube at position (x, y, z) with given color."""
+	# Note: We map World (X, Y, Z) to Matplotlib (X, Z, Y) for proper orientation:
+	# World X (left/right) -> Matplotlib X (left/right)
+	# World Y (up/down) -> Matplotlib Z (up/down)
+	# World Z (front/back) -> Matplotlib Y (front/back)
+	def draw_cube(ax, world_x, world_y, world_z, color, size=1.0):
+		"""Draw a cube at position (world_x, world_y, world_z) with given color.
+		
+		Args:
+			world_x: World X coordinate (left/right)
+			world_y: World Y coordinate (up/down)
+			world_z: World Z coordinate (front/back)
+		"""
+		# Map to matplotlib coordinates: (x, z, y) -> (x, y, z) in matplotlib
+		# matplotlib x = world_x, matplotlib y = world_z, matplotlib z = world_y
+		x, y, z = world_x, world_z, world_y
+		
 		# Define the 8 vertices of a cube
 		# Cube centered at (x, y, z) with size 1
 		s = size / 2.0
@@ -165,17 +179,17 @@ def visualize_world(world: World, title: str = "Minecraft Feature Visualization"
 		color = (r/255.0, g/255.0, b/255.0)
 		draw_cube(ax, x, y, z, color)
 	
-	# Set axis limits
+	# Set axis limits (mapped: X stays X, Y->Z, Z->Y)
 	padding = 0.5
 	ax.set_xlim(min_x - padding, max_x + 1 + padding)
-	ax.set_ylim(min_y - padding, max_y + 1 + padding)
-	ax.set_zlim(min_z - padding, max_z + 1 + padding)
+	ax.set_ylim(min_z - padding, max_z + 1 + padding)  # World Z -> Matplotlib Y
+	ax.set_zlim(min_y - padding, max_y + 1 + padding)  # World Y -> Matplotlib Z
 	
 	# Configure axes
 	if show_axes:
 		ax.set_xlabel('X')
-		ax.set_ylabel('Y')
-		ax.set_zlabel('Z')
+		ax.set_ylabel('Z')  # World Z is front/back
+		ax.set_zlabel('Y')  # World Y is up/down
 	else:
 		ax.set_axis_off()
 	
@@ -189,11 +203,11 @@ def visualize_world(world: World, title: str = "Minecraft Feature Visualization"
 	mid_y = (min_y + max_y) * 0.5
 	mid_z = (min_z + max_z) * 0.5
 	
-	# Add some padding
+	# Add some padding (mapped coordinates)
 	padding = 0.5
 	ax.set_xlim(mid_x - max_range - padding, mid_x + max_range + padding)
-	ax.set_ylim(mid_y - max_range - padding, mid_y + max_range + padding)
-	ax.set_zlim(mid_z - max_range - padding, mid_z + max_range + padding)
+	ax.set_ylim(mid_z - max_range - padding, mid_z + max_range + padding)  # World Z -> Matplotlib Y
+	ax.set_zlim(mid_y - max_range - padding, mid_y + max_range + padding)  # World Y -> Matplotlib Z
 	
 	# Enable free-panning (matplotlib 3D already supports this, but ensure it's enabled)
 	ax.mouse_init()
@@ -224,8 +238,18 @@ def run_interactive(feature_func: Callable[[World, SeededRandom], None],
 		print(f"Regenerated with seed: {rng.seed} ({len(world.blocks)} blocks)")
 		return world, rng.seed
 	
-	def draw_cube(ax, x, y, z, color, size=1.0):
-		"""Draw a cube at position (x, y, z) with given color."""
+	def draw_cube(ax, world_x, world_y, world_z, color, size=1.0):
+		"""Draw a cube at position (world_x, world_y, world_z) with given color.
+		
+		Args:
+			world_x: World X coordinate (left/right)
+			world_y: World Y coordinate (up/down)
+			world_z: World Z coordinate (front/back)
+		"""
+		# Map to matplotlib coordinates: (x, z, y) -> (x, y, z) in matplotlib
+		# matplotlib x = world_x, matplotlib y = world_z, matplotlib z = world_y
+		x, y, z = world_x, world_z, world_y
+		
 		s = size / 2.0
 		vertices = np.array([
 			[x-s, y-s, z-s], [x+s, y-s, z-s], [x+s, y+s, z-s], [x-s, y+s, z-s],  # bottom
@@ -268,18 +292,18 @@ def run_interactive(feature_func: Callable[[World, SeededRandom], None],
 			# Configure axes
 			if show_axes:
 				ax.set_xlabel('X')
-				ax.set_ylabel('Y')
-				ax.set_zlabel('Z')
+				ax.set_ylabel('Z')  # World Z is front/back
+				ax.set_zlabel('Y')  # World Y is up/down
 			else:
 				ax.set_axis_off()
 			
 			ax.set_title(f"Minecraft Feature Visualization (Seed: {rng.seed})")
 			
-			# Set axis limits
+			# Set axis limits (mapped: X stays X, Y->Z, Z->Y)
 			padding = 0.5
 			ax.set_xlim(min_x - padding, max_x + 1 + padding)
-			ax.set_ylim(min_y - padding, max_y + 1 + padding)
-			ax.set_zlim(min_z - padding, max_z + 1 + padding)
+			ax.set_ylim(min_z - padding, max_z + 1 + padding)  # World Z -> Matplotlib Y
+			ax.set_zlim(min_y - padding, max_y + 1 + padding)  # World Y -> Matplotlib Z
 			
 			ax.mouse_init()
 		
@@ -335,5 +359,5 @@ def example_feature(world: World, random_source: SeededRandom):
 if __name__ == "__main__":
 	# Run interactive visualization
 	# Replace example_feature with your own feature function
-	run_interactive(example_feature, 0)
+	run_interactive(example_feature, 0, False)
 
