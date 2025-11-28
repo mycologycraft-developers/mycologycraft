@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.mycologycraft_devs.features.referenceClasses;
+package com.mycologycraft_devs.mycologycraft.features.referenceClasses;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

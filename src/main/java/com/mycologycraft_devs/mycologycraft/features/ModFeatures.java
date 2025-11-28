@@ -1,6 +1,6 @@
-package com.mycologycraft_devs.features;
+package com.mycologycraft_devs.mycologycraft.features;
 
-import com.mycologycraft_devs.features.referenceClasses.MyceliaLavaLake;
+import com.mycologycraft_devs.mycologycraft.features.referenceClasses.MyceliaLavaLake;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
 import net.minecraft.core.registries.BuiltInRegistries;

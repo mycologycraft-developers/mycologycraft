@@ -3,7 +3,7 @@ package com.mycologycraft_devs.mycologycraft;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
-import com.mycologycraft_devs.features.ModFeatures;
+import com.mycologycraft_devs.mycologycraft.features.ModFeatures;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
 

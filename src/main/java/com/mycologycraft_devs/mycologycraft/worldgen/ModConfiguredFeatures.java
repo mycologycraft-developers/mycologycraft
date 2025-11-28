@@ -1,7 +1,7 @@
 package com.mycologycraft_devs.mycologycraft.worldgen;
 
-import com.mycologycraft_devs.features.ModFeatures;
-import com.mycologycraft_devs.features.referenceClasses.MyceliaLavaLake;
+import com.mycologycraft_devs.mycologycraft.features.ModFeatures;
+import com.mycologycraft_devs.mycologycraft.features.referenceClasses.MyceliaLavaLake;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
 import net.minecraft.core.registries.Registries;
