@@ -3,11 +3,15 @@ package com.mycologycraft_devs.mycologycraft.block;
 import java.util.function.Supplier;
 
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
+import com.mycologycraft_devs.mycologycraft.block.custom.BigMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
+import com.mycologycraft_devs.mycologycraft.worldgen.ModConfiguredFeatures;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -24,6 +28,15 @@ public class ModBlocks {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerBlock("example_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
 
+		public static final DeferredBlock<Block> EXAMPLE_MUSHROOM_ONE = registerBlock("example_mushroom_one",
+						() -> new MushroomBlock(ModConfiguredFeatures.BIG_MUSHROOM_TYPE_ONE, BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)));
+
+		public static final DeferredBlock<Block> EXAMPLE_MUSHROOM_STEM = registerBlock("example_mushroom_stem",
+						() -> new BigMushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIAMOND)));
+
+		public static final DeferredBlock<Block> EXAMPLE_MUSHROOM_BLOCK = registerBlock("example_mushroom_block",
+						() -> new BigMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM_BLOCK).mapColor(MapColor.DIAMOND)));
+
     //helper method that will call to register a block and then register an item for the block using the helper method below
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         //setup a variable for your block to be added to the deferred register list
@@ -36,7 +49,7 @@ public class ModBlocks {
 
     //helper method to register an item for the block, saves a little complexity for simple blocks
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+			ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     //method to pass the register to the main mod class
