@@ -3,7 +3,6 @@ package com.mycologycraft_devs.mycologycraft.item;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;

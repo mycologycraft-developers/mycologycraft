@@ -1,6 +1,7 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
+import com.mycologycraft_devs.mycologycraft.block.GrowableMushroom;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -22,7 +23,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
+        blockWithItem(ModBlocks.MUSHROOM_SPAWNING_BLOCK);
 
+        growableMushroom(ModBlocks.GROWABLE_MUSHROOM);
     }
 
     //registers a cube block with an item
@@ -36,7 +39,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     //extension of the above method that allows you to specify data if that modifies the blocks rendering
+    //is there any reason this is called blockItem while the first one is called blockWithItem???!!
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("mycologycraft:block/" + deferredBlock.getId().getPath() + appendix));
     }
+
+    private void growableMushroom(DeferredBlock<?> block) {
+
+        String name = block.getId().getPath();
+
+        // generate three cross models (small, stalk, cap)
+        ModelFile small = models().cross(name + "_stage0", modLoc("block/" + name + "_cap")).renderType("cutout");
+        ModelFile stalk = models().cross(name + "_stage1", modLoc("block/" + name + "_cap")).renderType("cutout");
+        ModelFile cap   = models().cross(name + "_stage2", modLoc("block/" + name + "_stalk")).renderType("cutout");
+
+        // Build blockstate with variants for STAGE property
+        getVariantBuilder(block.get())
+            .partialState().with(GrowableMushroom.GROWTH_STAGE, 0)
+                .modelForState().modelFile(small).addModel()
+            .partialState().with(GrowableMushroom.GROWTH_STAGE, 1)
+                .modelForState().modelFile(stalk).addModel()
+            .partialState().with(GrowableMushroom.GROWTH_STAGE, 2)
+                .modelForState().modelFile(cap).addModel();
+
+        // Item model (for inventory) stage0
+        simpleBlockItem(block.get(), small);
+    }
+
 }

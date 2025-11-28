@@ -25,7 +25,8 @@ public class ModCreativeTab {
                         //follow this template for adding items/blocks to the creative menu
                         output.accept(ModItems.EXAMPLE_ITEM);
                         output.accept(ModBlocks.EXAMPLE_BLOCK);
-
+                        output.accept(ModBlocks.MUSHROOM_SPAWNING_BLOCK);
+                        output.accept(ModBlocks.GROWABLE_MUSHROOM);
                     }).build());
 
     //    Alternate method that can be used to add an item from elsewhere

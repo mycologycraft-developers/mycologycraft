@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
 
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -23,6 +24,13 @@ public class ModBlocks {
     //register a blockitem that references the block
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerBlock("example_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+
+
+    public static final DeferredBlock<Block> MUSHROOM_SPAWNING_BLOCK = registerBlock("mushroom_spawning_block",
+            () -> new MushroomSpawningBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.6f)));
+
+    public static final DeferredBlock<Block> GROWABLE_MUSHROOM = registerBlock("growable_mushroom",
+            () -> new GrowableMushroom(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.2f)));
 
     //helper method that will call to register a block and then register an item for the block using the helper method below
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
