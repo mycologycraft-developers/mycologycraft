@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package com.mycologycraft_devs.mycologycraft.features.referenceClasses;
 
 import com.mojang.serialization.Codec;
@@ -43,7 +38,8 @@ public class MyceliaLavaLake extends Feature<MyceliaLavaLake.Configuration> {
 		} else {
 			origin = origin.below(4);
 
-			//the main grid for generating the lava lake
+			// the main grid for generating the lava lake
+			// is a flat-packed 3D array i.e [(x * 16 + z) * 8 + y]
 			boolean[] grid = new boolean[2048];
 
 			//the secondary grid for generating our expanded barrier of mycelia
@@ -177,7 +173,6 @@ public class MyceliaLavaLake extends Feature<MyceliaLavaLake.Configuration> {
 					for(int zz = 0; zz < 16; ++zz) {
 						for(int yy = 0; yy < 8; ++yy) {
 							boolean check =
-									//not grid at pos (x * 16 + z) * 8 + y (OH GOD OH FUCK THEY ARE DOING FUCKY SHIT TO AVOID 3D ARRAYS)
 									//if not at grid origin
 									!grid[(xx * 16 + zz) * 8 + yy]
 											//and x is less than 15 and the grid position with x+1 is lava
@@ -215,7 +210,6 @@ public class MyceliaLavaLake extends Feature<MyceliaLavaLake.Configuration> {
 					for(int zz = 0; zz < 16; ++zz) {
 						for(int yy = 0; yy < 8; ++yy) {
 							boolean check =
-									//not grid at pos (x * 16 + z) * 8 + y (OH GOD OH FUCK THEY ARE DOING FUCKY SHIT TO AVOID 3D ARRAYS)
 									//if not at grid origin
 									!outerMycelium[(xx * 16 + zz) * 8 + yy]
 											//and x is less than 15 and the grid position with x+1 is lava
@@ -250,19 +244,6 @@ public class MyceliaLavaLake extends Feature<MyceliaLavaLake.Configuration> {
 								}
 
 							}
-						}
-					}
-				}
-			}
-
-			//this is only used for water based lakes, but shall be left in case we want to do something with it
-			if (fluid.getFluidState().is(FluidTags.WATER)) {
-				for(int k2 = 0; k2 < 16; ++k2) {
-					for(int k3 = 0; k3 < 16; ++k3) {
-						int i4 = 4;
-						BlockPos blockpos2 = origin.offset(k2, 4, k3);
-						if (((Biome)level.getBiome(blockpos2).value()).shouldFreeze(level, blockpos2, false) && this.canReplaceBlock(level.getBlockState(blockpos2))) {
-							level.setBlock(blockpos2, Blocks.ICE.defaultBlockState(), 2);
 						}
 					}
 				}
