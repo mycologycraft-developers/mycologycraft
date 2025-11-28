@@ -1,9 +1,8 @@
 package com.mycologycraft_devs.mycologycraft.worldgen;
 
 import com.mycologycraft_devs.features.ModFeatures;
-import com.mycologycraft_devs.features.referenceClasses.LakeFeatureAnnotated;
+import com.mycologycraft_devs.features.referenceClasses.MyceliaLavaLake;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
-import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -21,7 +20,7 @@ public class ModConfiguredFeatures {
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		register(context, OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM, ModFeatures.OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM.get(),
-				new LakeFeatureAnnotated.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(ModBlocks.EXAMPLE_BLOCK.get()), BlockStateProvider.simple(Blocks.HONEY_BLOCK)));
+				new MyceliaLavaLake.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(Blocks.ROOTED_DIRT), BlockStateProvider.simple(Blocks.MYCELIUM)));
 	}
 
 

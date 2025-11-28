@@ -1,6 +1,6 @@
 package com.mycologycraft_devs.features;
 
-import com.mycologycraft_devs.features.referenceClasses.LakeFeatureAnnotated;
+import com.mycologycraft_devs.features.referenceClasses.MyceliaLavaLake;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,9 +15,9 @@ public class ModFeatures {
 		MycologyCraft.MODID
 	);
 
-	public static final DeferredHolder<Feature<?>, LakeFeatureAnnotated> OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM = FEATURES.register(
+	public static final DeferredHolder<Feature<?>, MyceliaLavaLake> OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM = FEATURES.register(
 		"magma_mycelium_lava_lake",
-		() -> new LakeFeatureAnnotated(LakeFeatureAnnotated.Configuration.CODEC)
+		() -> new MyceliaLavaLake(MyceliaLavaLake.Configuration.CODEC)
 	);
 
 	//method to pass the register to the main mod class
