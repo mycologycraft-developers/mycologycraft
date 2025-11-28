@@ -1,19 +1,29 @@
 package com.mycologycraft_devs.mycologycraft.worldgen;
 
+import com.mycologycraft_devs.mycologycraft.features.ModFeatures;
+import com.mycologycraft_devs.mycologycraft.features.referenceClasses.MyceliaLavaLake;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class ModConfiguredFeatures {
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM = registerKey("magma_mycelium_lava_lake");
+
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-		
+		register(context, OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM, ModFeatures.OVERWORLD_LAVA_LAKE_MAGMA_MYCELIUM.get(),
+				new MyceliaLavaLake.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(Blocks.ROOTED_DIRT), BlockStateProvider.simple(Blocks.MYCELIUM)));
 	}
+
+
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(MycologyCraft.MODID, name));
