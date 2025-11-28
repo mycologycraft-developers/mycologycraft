@@ -22,7 +22,7 @@ public class MushroomSpawningBlock extends Block {
             // sspawn a custom mushroom block above if the space is empty
             BlockPos abovePos = pos.above();
             if (world.isEmptyBlock(abovePos)) {
-                world.setBlockAndUpdate(abovePos, ModBlocks.GROWABLE_MUSHROOM.get().defaultBlockState());
+                world.setBlockAndUpdate(abovePos, ModBlocks.FEATURELESS_DOUBLE_MUSHROOM_BLOCK.get().defaultBlockState());
             }
         }
     }

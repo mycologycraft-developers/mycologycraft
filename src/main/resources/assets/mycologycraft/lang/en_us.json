@@ -2,5 +2,6 @@
   "creativetab.mycologycraft.mycology_items": "Example Mod Tab",
   "block.mycologycraft.example_block": "Example Block",
   "item.mycologycraft.example_item": "Example Item",
-  "block.mycologycraft.mushroom_spawning_block": "Mushroom Spawning Block"
+  "block.mycologycraft.mushroom_spawning_block": "Mushroom Spawning Block",
+  "block.mycologycraft.featureless_double_mushroom_block": "Featureless Double Mushroom Block"
 }

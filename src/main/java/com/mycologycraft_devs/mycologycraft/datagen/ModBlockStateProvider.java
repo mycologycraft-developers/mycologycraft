@@ -1,11 +1,12 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
-import com.mycologycraft_devs.mycologycraft.block.GrowableMushroom;
+import com.mycologycraft_devs.mycologycraft.block.FeaturelessDoubleMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -25,7 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
         blockWithItem(ModBlocks.MUSHROOM_SPAWNING_BLOCK);
 
-        growableMushroom(ModBlocks.GROWABLE_MUSHROOM);
+        featurelessDoubleMushroom(ModBlocks.FEATURELESS_DOUBLE_MUSHROOM_BLOCK);
     }
 
     //registers a cube block with an item
@@ -39,12 +40,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     //extension of the above method that allows you to specify data if that modifies the blocks rendering
-    //is there any reason this is called blockItem while the first one is called blockWithItem???!!
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("mycologycraft:block/" + deferredBlock.getId().getPath() + appendix));
     }
 
-    private void growableMushroom(DeferredBlock<?> block) {
+    private void featurelessDoubleMushroom(DeferredBlock<?> block) {
 
         String name = block.getId().getPath();
 
@@ -55,15 +55,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // Build blockstate with variants for STAGE property
         getVariantBuilder(block.get())
-            .partialState().with(GrowableMushroom.GROWTH_STAGE, 0)
+            .partialState().with(FeaturelessDoubleMushroomBlock.GROWTH_STAGE, 0)
                 .modelForState().modelFile(small).addModel()
-            .partialState().with(GrowableMushroom.GROWTH_STAGE, 1)
+            .partialState().with(FeaturelessDoubleMushroomBlock.GROWTH_STAGE, 1)
                 .modelForState().modelFile(stalk).addModel()
-            .partialState().with(GrowableMushroom.GROWTH_STAGE, 2)
+            .partialState().with(FeaturelessDoubleMushroomBlock.GROWTH_STAGE, 2)
                 .modelForState().modelFile(cap).addModel();
 
         // Item model (for inventory) stage0
-        simpleBlockItem(block.get(), small);
+        // simpleBlockItem(block.get(), small);
+        itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name + "_cap");
     }
 
 }
