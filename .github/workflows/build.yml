@@ -18,8 +18,11 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-- name: Build with Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build with Gradle
         run: ./gradlew build
 
-- name: Build with Gradle
+      - name: Run Data Gen
         run: ./gradlew runData
