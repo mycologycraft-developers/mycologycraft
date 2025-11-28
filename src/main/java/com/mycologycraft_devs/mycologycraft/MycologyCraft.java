@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
+import com.mycologycraft_devs.mycologycraft.feature.ModFeatures;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
 
 import net.minecraft.client.Minecraft;
@@ -53,6 +54,7 @@ public class MycologyCraft {
         ModItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ModCreativeTab.register(modEventBus);
+				ModFeatures.register(modEventBus);
 
 
 

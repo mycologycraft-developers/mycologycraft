@@ -28,6 +28,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.EXAMPLE_BLOCK);
                         output.accept(ModBlocks.EXAMPLE_MUSHROOM_STEM);
                         output.accept(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
+												output.accept(ModBlocks.EXAMPLE_MUSHROOM_ONE);
 
                     }).build());
 

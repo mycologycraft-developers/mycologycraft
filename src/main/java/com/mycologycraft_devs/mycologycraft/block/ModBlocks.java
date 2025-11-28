@@ -5,11 +5,13 @@ import java.util.function.Supplier;
 import com.mycologycraft_devs.mycologycraft.MycologyCraft;
 import com.mycologycraft_devs.mycologycraft.block.custom.BigMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
+import com.mycologycraft_devs.mycologycraft.worldgen.ModConfiguredFeatures;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -25,6 +27,9 @@ public class ModBlocks {
     //register a blockitem that references the block
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerBlock("example_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
+
+		public static final DeferredBlock<Block> EXAMPLE_MUSHROOM_ONE = registerBlock("example_mushroom_one",
+						() -> new MushroomBlock(ModConfiguredFeatures.BIG_MUSHROOM_TYPE_ONE, BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)));
 
 		public static final DeferredBlock<Block> EXAMPLE_MUSHROOM_STEM = registerBlock("example_mushroom_stem",
 						() -> new BigMushroomBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DIAMOND)));
