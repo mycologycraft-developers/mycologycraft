@@ -44,7 +44,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void crossBlockWithItem(DeferredBlock<?> deferredBlock) {
         String name = deferredBlock.getId().getPath();
         ModelFile model = models()
-        .cross(name, modLoc("mycologycraft:block/" + name))
+        .cross(name, modLoc("block/" + name))
         .renderType("cutout");
 
         simpleBlockWithItem(deferredBlock.get(), model);
