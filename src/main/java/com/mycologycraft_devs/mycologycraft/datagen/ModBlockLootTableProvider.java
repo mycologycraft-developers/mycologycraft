@@ -25,7 +25,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
 
         dropSelf(ModBlocks.EXAMPLE_BLOCK.get());
-
+        dropSelf(ModBlocks.EXAMPLE_MUSHROOM_BLOCK.get());
     }
 
     //get all blocks that were registered in modblocks, converting it to an iteratable.

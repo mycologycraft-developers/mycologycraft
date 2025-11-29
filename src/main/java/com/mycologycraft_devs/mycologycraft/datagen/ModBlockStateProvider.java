@@ -22,7 +22,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
-
+        crossBlockWithItem(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
     }
 
     //registers a cube block with an item
@@ -38,5 +38,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     //extension of the above method that allows you to specify data if that modifies the blocks rendering
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("mycologycraft:block/" + deferredBlock.getId().getPath() + appendix));
+    }
+
+    //registers a cross block with an item
+    private void crossBlockWithItem(DeferredBlock<?> deferredBlock) {
+        String name = deferredBlock.getId().getPath();
+        ModelFile model = models()
+        .cross(name, modLoc("mycologycraft:block/" + name))
+        .renderType("cutout");
+
+        simpleBlockWithItem(deferredBlock.get(), model);
     }
 }
