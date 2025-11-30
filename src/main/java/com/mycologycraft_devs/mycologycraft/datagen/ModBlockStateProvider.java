@@ -1,9 +1,12 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
+import com.mycologycraft_devs.mycologycraft.block.ExampleDoubleMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -23,6 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
         crossBlockWithItem(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
+        doubleCrossBlockWithItem(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
     }
 
     //registers a cube block with an item
@@ -56,5 +60,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name);
     }
 
-    
+    //registers a double cross block with an item (like tall flowers)
+    private void doubleCrossBlockWithItem(DeferredBlock<?> deferredBlock) {
+        String name = deferredBlock.getId().getPath();
+        ModelFile lower = crossModel(name + "_lower");
+        ModelFile upper = crossModel(name + "_upper");
+
+        getVariantBuilder(deferredBlock.get()) 
+        .partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER).modelForState()
+            .modelFile(lower).addModel()
+        .partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.UPPER).modelForState()
+            .modelFile(upper).addModel();
+
+        //item
+        itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name + "_upper"); //just looks better in this case, figure this out later
+    }
+
+    //helper
+    ModelFile crossModel(String name) {
+        return models()
+        .cross(name, modLoc("block/" + name))
+        .renderType("cutout");
+    }
 }

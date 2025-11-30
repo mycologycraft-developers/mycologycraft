@@ -34,6 +34,11 @@ public class ModBlocks {
                 BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)
             ));
 
+    public static final DeferredBlock<ExampleDoubleMushroomBlock> EXAMPLE_DOUBLE_MUSHROOM_BLOCK = registerBlock("example_double_mushroom_block",
+            () -> new ExampleDoubleMushroomBlock(
+                TreeFeatures.HUGE_RED_MUSHROOM,
+                BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM)
+            ));
 
 
     //helper method that will call to register a block and then register an item for the block using the helper method below
