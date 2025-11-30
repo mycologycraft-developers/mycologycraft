@@ -47,6 +47,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         .cross(name, modLoc("block/" + name))
         .renderType("cutout");
 
-        simpleBlockWithItem(deferredBlock.get(), model);
+        // simpleBlockWithItem(deferredBlock.get(), model);
+        //item
+        //not simpleblockitem you idiot
+        //block and item separately
+        simpleBlock(deferredBlock.get(), model);
+        //item as 2d model
+        itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name);
     }
+
+    
 }
