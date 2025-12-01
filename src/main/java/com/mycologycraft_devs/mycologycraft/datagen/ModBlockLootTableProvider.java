@@ -3,13 +3,20 @@ package com.mycologycraft_devs.mycologycraft.datagen;
 
 import java.util.Set;
 
+import com.mycologycraft_devs.mycologycraft.block.ExampleDoubleMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 
 //this class configures loot tables for blocks. This is important, as without it blocks will not drop anything
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
@@ -26,7 +33,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.EXAMPLE_BLOCK.get());
         dropSelf(ModBlocks.EXAMPLE_MUSHROOM_BLOCK.get());
-        dropSelf(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get());
+        //dropSelf(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get());
+        this.add(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get(), block -> createDoubleMushroomLoot(block));
     }
 
     //get all blocks that were registered in modblocks, converting it to an iteratable.
@@ -34,4 +42,21 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
+    
+    private LootTable.Builder createDoubleMushroomLoot(Block block) {
+    return LootTable.lootTable()
+        .withPool(
+            LootPool.lootPool()
+                .add(LootItem.lootTableItem(block))
+                .when(
+                    LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(block)
+                        .setProperties(
+                            StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER)
+                        )
+                )
+        );
+}
+
 }

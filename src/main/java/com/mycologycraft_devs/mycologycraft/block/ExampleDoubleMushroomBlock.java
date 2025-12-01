@@ -143,6 +143,30 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
         }
     }
 
+		// @Override //this is a failed fix for the issue of double dropping. instead FIX LOOT TABLES
+		// public boolean onDestroyedByPlayer(
+		// 		BlockState state,
+		// 		Level level,
+		// 		BlockPos pos,
+		// 		Player player,
+		// 		boolean willHarvest,
+		// 		net.minecraft.world.level.material.FluidState fluid
+		// ) {
+		// 		if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
+
+		// 				BlockPos belowPos = pos.below();
+		// 				BlockState belowState = level.getBlockState(belowPos);
+
+		// 				if (belowState.is(this) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+		// 						// remove lower half silently
+		// 						level.setBlock(belowPos, fluid.createLegacyBlock(), 35);
+		// 				}
+		// 		}
+
+		// 		return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
+		// }
+
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HALF);
