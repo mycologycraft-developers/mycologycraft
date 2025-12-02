@@ -34,7 +34,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.EXAMPLE_BLOCK.get());
         dropSelf(ModBlocks.EXAMPLE_MUSHROOM_BLOCK.get());
         //dropSelf(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get());
-        this.add(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get(), block -> createDoubleMushroomLoot(block));
+        //this.add(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get(), block -> createDoubleMushroomLoot(block));
+        this.add(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get(),
+            (block) -> 
+            createSinglePropConditionTable(
+                block, 
+                ExampleDoubleMushroomBlock.HALF,
+                DoubleBlockHalf.LOWER)
+        );
     }
 
     //get all blocks that were registered in modblocks, converting it to an iteratable.
@@ -43,20 +50,22 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
     
-    private LootTable.Builder createDoubleMushroomLoot(Block block) {
-    return LootTable.lootTable()
-        .withPool(
-            LootPool.lootPool()
-                .add(LootItem.lootTableItem(block))
-                .when(
-                    LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(block)
-                        .setProperties(
-                            StatePropertiesPredicate.Builder.properties()
-                                .hasProperty(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER)
-                        )
-                )
-        );
-}
+
+    //replace with createSinglePropConditionTable from BlockLootSubProvider
+    // private LootTable.Builder createDoubleMushroomLoot(Block block) {
+    // return LootTable.lootTable()
+    //     .withPool(
+    //         LootPool.lootPool()
+    //             .add(LootItem.lootTableItem(block))
+    //             .when(
+    //                 LootItemBlockStatePropertyCondition
+    //                     .hasBlockStateProperties(block)
+    //                     .setProperties(
+    //                         StatePropertiesPredicate.Builder.properties()
+    //                             .hasProperty(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER)
+    //                     )
+    //             )
+    //     );
+    // }
 
 }
