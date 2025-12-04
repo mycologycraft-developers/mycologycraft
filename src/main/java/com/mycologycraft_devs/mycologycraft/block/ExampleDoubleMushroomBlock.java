@@ -179,7 +179,7 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
      */
     @Override
     protected long getSeed(BlockState state, BlockPos pos) {
-			//get the seed of the pos below (.below(1)) for upper half, proper pos (.below(0)) for lower half
+		//get the seed of the pos below (.below(1)) for upper half, proper pos (.below(0)) for lower half
         return Mth.getSeed(pos.getX(), pos.below(state.getValue(HALF) == DoubleBlockHalf.LOWER ? 0 : 1).getY(), pos.getZ());
     }
 }
