@@ -30,9 +30,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ExampleDoubleMushroomBlock extends MushroomBlock
 {
-	//public static final VoxelShape SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0);
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
-	public static final VoxelShape UPPER_SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0);public static final VoxelShape LOWER_SHAPE = Block.box(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
+	public static final VoxelShape UPPER_SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0);
+	public static final VoxelShape LOWER_SHAPE = Block.box(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
 	
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {

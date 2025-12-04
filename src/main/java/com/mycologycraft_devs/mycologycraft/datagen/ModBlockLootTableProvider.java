@@ -33,8 +33,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.EXAMPLE_BLOCK.get());
         dropSelf(ModBlocks.EXAMPLE_MUSHROOM_BLOCK.get());
-        //dropSelf(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get());
-        //this.add(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get(), block -> createDoubleMushroomLoot(block));
         this.add(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK.get(),
             (block) -> 
             createSinglePropConditionTable(
@@ -49,23 +47,4 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
-    
-
-    //replace with createSinglePropConditionTable from BlockLootSubProvider
-    // private LootTable.Builder createDoubleMushroomLoot(Block block) {
-    // return LootTable.lootTable()
-    //     .withPool(
-    //         LootPool.lootPool()
-    //             .add(LootItem.lootTableItem(block))
-    //             .when(
-    //                 LootItemBlockStatePropertyCondition
-    //                     .hasBlockStateProperties(block)
-    //                     .setProperties(
-    //                         StatePropertiesPredicate.Builder.properties()
-    //                             .hasProperty(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER)
-    //                     )
-    //             )
-    //     );
-    // }
-
 }

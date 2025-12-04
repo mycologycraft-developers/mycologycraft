@@ -8,7 +8,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ExampleMushroomBlock extends MushroomBlock
 {
-	public static final VoxelShape SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0);
+	public static final VoxelShape SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0); //this is actually used in super
 	public ExampleMushroomBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Properties properties)
 	{
 		super(feature, properties);
