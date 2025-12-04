@@ -100,6 +100,7 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
 	}
 
 	@Override
+	@Override
 	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
 			return super.canSurvive(state, level, pos); //lower half uses super canSurvive
