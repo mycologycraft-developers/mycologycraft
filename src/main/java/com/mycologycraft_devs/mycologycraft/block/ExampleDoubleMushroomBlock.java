@@ -94,9 +94,9 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
 	* Useful when the block is placed by other means than a player placing it with a BlockItem.
 	*/
 	public static void placeAt(LevelAccessor level, BlockState state, BlockPos pos, int flags) {
-			BlockPos blockposabove = pos.above();
-			level.setBlock(pos, copyWaterloggedFrom(level, pos, state.setValue(HALF, DoubleBlockHalf.LOWER)), flags);
-			level.setBlock(blockposabove, copyWaterloggedFrom(level, blockposabove, state.setValue(HALF, DoubleBlockHalf.UPPER)), flags);
+		BlockPos blockposabove = pos.above();
+		level.setBlock(pos, copyWaterloggedFrom(level, pos, state.setValue(HALF, DoubleBlockHalf.LOWER)), flags);
+		level.setBlock(blockposabove, copyWaterloggedFrom(level, blockposabove, state.setValue(HALF, DoubleBlockHalf.UPPER)), flags);
 	}
 
 	@Override
