@@ -36,11 +36,11 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
 	
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-			if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-					return LOWER_SHAPE;
-			} else {
-					return UPPER_SHAPE;
-			}
+		if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
+			return LOWER_SHAPE;
+		} else {
+			return UPPER_SHAPE;
+		}
 	}
 	public ExampleDoubleMushroomBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Properties properties)
 	{
