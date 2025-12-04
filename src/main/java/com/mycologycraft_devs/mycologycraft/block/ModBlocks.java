@@ -28,7 +28,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
 
     public static final DeferredBlock<MushroomBlock> EXAMPLE_MUSHROOM_BLOCK = registerBlock("example_mushroom_block",
-            () -> new MushroomBlock(
+            () -> new ExampleMushroomBlock(
                 TreeFeatures.HUGE_BROWN_MUSHROOM,
                 BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)
             ));
