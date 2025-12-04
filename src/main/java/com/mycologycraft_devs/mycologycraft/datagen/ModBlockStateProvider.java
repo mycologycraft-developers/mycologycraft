@@ -1,9 +1,11 @@
 package com.mycologycraft_devs.mycologycraft.datagen;
 
 
+import com.mycologycraft_devs.mycologycraft.block.ExampleDoubleMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -22,7 +24,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
-
+        crossBlockWithItem(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
+        doubleCrossBlockWithItem(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
     }
 
     //registers a cube block with an item
@@ -38,5 +41,44 @@ public class ModBlockStateProvider extends BlockStateProvider {
     //extension of the above method that allows you to specify data if that modifies the blocks rendering
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("mycologycraft:block/" + deferredBlock.getId().getPath() + appendix));
+    }
+
+    //registers a cross block with an item
+    private void crossBlockWithItem(DeferredBlock<?> deferredBlock) {
+        String name = deferredBlock.getId().getPath();
+        ModelFile model = models()
+        .cross(name, modLoc("block/" + name))
+        .renderType("cutout");
+
+        // simpleBlockWithItem(deferredBlock.get(), model);
+        //item
+        //not simpleblockitem you idiot
+        //block and item separately
+        simpleBlock(deferredBlock.get(), model);
+        //item as 2d model
+        itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name);
+    }
+
+    //registers a double cross block with an item (like tall flowers)
+    private void doubleCrossBlockWithItem(DeferredBlock<?> deferredBlock) {
+        String name = deferredBlock.getId().getPath();
+        ModelFile lower = crossModel(name + "_lower");
+        ModelFile upper = crossModel(name + "_upper");
+
+        getVariantBuilder(deferredBlock.get()) 
+        .partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER).modelForState()
+            .modelFile(lower).addModel()
+        .partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.UPPER).modelForState()
+            .modelFile(upper).addModel();
+
+        //item
+        itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name + "_upper"); //just looks better in this case, figure this out later
+    }
+
+    //helper
+    ModelFile crossModel(String name) {
+        return models()
+        .cross(name, modLoc("block/" + name))
+        .renderType("cutout");
     }
 }

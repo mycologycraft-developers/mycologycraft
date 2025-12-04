@@ -1,5 +1,7 @@
 {
   "creativetab.mycologycraft.mycology_items": "Example Mod Tab",
   "block.mycologycraft.example_block": "Example Block",
-  "item.mycologycraft.example_item": "Example Item"
+  "item.mycologycraft.example_item": "Example Item",
+  "block.mycologycraft.example_mushroom_block": "Example Mushroom Block",
+  "block.mycologycraft.example_double_mushroom_block": "Example Double Mushroom Block"
 }
