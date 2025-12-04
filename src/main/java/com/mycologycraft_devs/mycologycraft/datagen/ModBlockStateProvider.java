@@ -5,7 +5,6 @@ import com.mycologycraft_devs.mycologycraft.block.ExampleDoubleMushroomBlock;
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
