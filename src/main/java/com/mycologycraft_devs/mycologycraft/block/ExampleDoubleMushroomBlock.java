@@ -54,7 +54,7 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
 		
 		if (facing.getAxis() != Direction.Axis.Y //if update is not vertical, check
 		|| (doubleblockhalf == DoubleBlockHalf.LOWER) != (facing == Direction.UP) // read the != like a XOR: half is LOWER and facing is UP, or half is UPPER and facing is DOWN: != is false. basically if UPPER HALF gets from UP or LOWER HALF gets from DOWN, state is valid, proceed check
-		|| (facingState.is(this) && (facingState.getValue(HALF) != doubleblockhalf))) { //if you get updateshape from same type, different half, its ok, proceed check (at this point the direction is confirmed to be vertical (first condition) and matching the halfs(second condition))
+		|| (facingState.is(this) && (facingState.getValue(HALF) != doubleblockhalf))) { //if you get updateshape from same type, different half, its ok, proceed check (at this point the direction is confirmed to be vertical (first condition) and matching the halves(second condition))
 		return (doubleblockhalf == DoubleBlockHalf.LOWER) && (facing == Direction.DOWN) && (!state.canSurvive(level, currentPos)) //if you are LOWER half, getting update from DOWN, and can NOT survive: 
 				? Blocks.AIR.defaultBlockState()
 				: super.updateShape(state, facing, facingState, level, currentPos, facingPos);
