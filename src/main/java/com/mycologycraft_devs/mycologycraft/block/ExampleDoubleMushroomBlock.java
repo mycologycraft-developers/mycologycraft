@@ -80,7 +80,7 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
 	}
 
 	/**
-		* Called by BlockItem after this block has been placed.
+	* Called by BlockItem after this block has been placed.
 	*/
 	@Override
 	public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
