@@ -101,14 +101,15 @@ public class ExampleDoubleMushroomBlock extends MushroomBlock
 
 	@Override
 	protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-			if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
-					return super.canSurvive(state, level, pos); //lower half uses super canSurvive
-			} else {
-					BlockState belowblockstate = level.getBlockState(pos.below()); //upper half needs to check block below
-					if (state.getBlock() != this) return super.canSurvive(state, level, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-					return belowblockstate.is(this) && belowblockstate.getValue(HALF) == DoubleBlockHalf.LOWER; //upper half can survive only if below is lower half of same block
-			}
+		if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
+			return super.canSurvive(state, level, pos); //lower half uses super canSurvive
+		} else {
+			BlockState belowblockstate = level.getBlockState(pos.below()); //upper half needs to check block below
+			if (state.getBlock() != this) return super.canSurvive(state, level, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+			return belowblockstate.is(this) && belowblockstate.getValue(HALF) == DoubleBlockHalf.LOWER; //upper half can survive only if below is lower half of same block
+		}
 	}
+	
 	@Override
     public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide) {
