@@ -10,7 +10,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -27,7 +26,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = registerBlock("example_block",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
 
-    public static final DeferredBlock<MushroomBlock> EXAMPLE_MUSHROOM_BLOCK = registerBlock("example_mushroom_block",
+    public static final DeferredBlock<ExampleMushroomBlock> EXAMPLE_MUSHROOM_BLOCK = registerBlock("example_mushroom_block",
             () -> new ExampleMushroomBlock(
                 TreeFeatures.HUGE_BROWN_MUSHROOM,
                 BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)
@@ -39,6 +38,11 @@ public class ModBlocks {
                 BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM)
             ));
 
+		public static final DeferredBlock<ExampleMushroomBlock> EXAMPLE_COMPLEX_MUSHROOM_BLOCK = registerBlock("example_complex_mushroom_block",
+						() -> new ExampleMushroomBlock(
+								TreeFeatures.HUGE_RED_MUSHROOM,
+								BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM)
+						));
 
     //helper method that will call to register a block and then register an item for the block using the helper method below
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

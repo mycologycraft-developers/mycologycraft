@@ -26,6 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.EXAMPLE_BLOCK);
         crossBlockWithItem(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
         doubleCrossBlockWithItem(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
+				blockWithComplexModel(ModBlocks.EXAMPLE_COMPLEX_MUSHROOM_BLOCK, "example_complex_mushroom_block");
     }
 
     //registers a cube block with an item
@@ -81,4 +82,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         .cross(name, modLoc("block/" + name))
         .renderType("cutout");
     }
+
+		private void blockWithComplexModel(DeferredBlock<?> deferredBlock, String modelName) {
+			ModelFile modelFile = new ModelFile.UncheckedModelFile("mycologycraft:block/" + modelName);
+			simpleBlockWithItem(deferredBlock.get(), modelFile);
+		}
 }
+

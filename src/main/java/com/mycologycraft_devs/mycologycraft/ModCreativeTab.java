@@ -1,7 +1,10 @@
 package com.mycologycraft_devs.mycologycraft;
 
+import java.util.function.Supplier;
+
 import com.mycologycraft_devs.mycologycraft.block.ModBlocks;
 import com.mycologycraft_devs.mycologycraft.item.ModItems;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -9,8 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
 
 public class ModCreativeTab {
 
@@ -27,6 +28,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.EXAMPLE_BLOCK);
                         output.accept(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
                         output.accept(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
+												output.accept(ModBlocks.EXAMPLE_COMPLEX_MUSHROOM_BLOCK);
                     }).build());
 
     //    Alternate method that can be used to add an item from elsewhere
