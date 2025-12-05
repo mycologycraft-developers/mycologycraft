@@ -16,7 +16,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -28,7 +27,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ExampleDoubleMushroomBlock extends MushroomBlock
+public class ExampleDoubleMushroomBlock extends ExampleMushroomBlock //im doing this because we will disable some vanilla features of the mushroom (MushroomBlock), and theres no reason to duplicate that code
 {
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	protected static final VoxelShape UPPER_SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0);
