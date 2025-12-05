@@ -36,6 +36,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 DoubleBlockHalf.LOWER)
         );
 				dropSelf(ModBlocks.EXAMPLE_COMPLEX_MUSHROOM_BLOCK.get());
+				this.add(ModBlocks.EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK.get(),
+						(block) -> 
+						createSinglePropConditionTable(
+								block, 
+								ExampleDoubleMushroomBlock.HALF,
+								DoubleBlockHalf.LOWER)
+				);
     }
 
     //get all blocks that were registered in modblocks, converting it to an iteratable.

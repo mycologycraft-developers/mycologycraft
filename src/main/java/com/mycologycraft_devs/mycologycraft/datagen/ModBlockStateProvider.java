@@ -27,6 +27,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         crossBlockWithItem(ModBlocks.EXAMPLE_MUSHROOM_BLOCK);
         doubleCrossBlockWithItem(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
 				blockWithComplexModel(ModBlocks.EXAMPLE_COMPLEX_MUSHROOM_BLOCK, "example_complex_mushroom_block");
+				doubleComplexBlockWithItem(ModBlocks.EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK);
     }
 
     //registers a cube block with an item
@@ -76,16 +77,47 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name, "item/generated").texture("layer0", "mycologycraft:block/" + name + "_upper"); //just looks better in this case, figure this out later
     }
 
+		//registers a double complex block with an item (tall plant but step is a fence and cap is a slab)
+		private void doubleComplexBlockWithItem(DeferredBlock<?> deferredBlock) {
+			String name = deferredBlock.getId().getPath();
+			
+			//var stemTexture = mcLoc("block/oak_planks"); //just an example texture, change as needed
+			//var capTexture = mcLoc("block/oak_planks"); //just an example texture, change as needed
+
+			var capTextureSide = modLoc("block/" + name + "_cap_side");
+			var capTextureBottom = modLoc("block/" + name + "_cap_bottom");
+			var capTextureTop = modLoc("block/" + name + "_cap_top");
+
+			var stemTexture = modLoc("block/" + name + "_stem");
+			
+			ModelFile stem = models().fencePost(name + "_stem", stemTexture);
+			ModelFile cap = models().slab(name + "_cap", capTextureSide, capTextureBottom, capTextureTop);
+
+
+			getVariantBuilder(deferredBlock.get())
+					.partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER).modelForState()
+					.modelFile(stem).addModel()
+					.partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.UPPER).modelForState()
+					.modelFile(cap).addModel();
+
+			//item
+			itemModels().withExistingParent(name, "item/generated").texture("layer0", capTextureTop.toString()); //this will look like crap either way, we need separate texture made by hand or smth
+		}
+
     //helper
+		//cross
     ModelFile crossModel(String name) {
         return models()
         .cross(name, modLoc("block/" + name))
         .renderType("cutout");
     }
 
+
 		private void blockWithComplexModel(DeferredBlock<?> deferredBlock, String modelName) {
 			ModelFile modelFile = new ModelFile.UncheckedModelFile("mycologycraft:block/" + modelName);
 			simpleBlockWithItem(deferredBlock.get(), modelFile);
 		}
+
+
 }
 
