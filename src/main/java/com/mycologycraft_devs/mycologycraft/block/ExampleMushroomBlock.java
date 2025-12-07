@@ -14,10 +14,10 @@ public class ExampleMushroomBlock extends MushroomBlock
 {
 	protected static final VoxelShape SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 10.0, 13.0);
 	
-    @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return SHAPE;
-    }
+	@Override
+	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return SHAPE;
+	}
 
 	public ExampleMushroomBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Properties properties)
 	{
