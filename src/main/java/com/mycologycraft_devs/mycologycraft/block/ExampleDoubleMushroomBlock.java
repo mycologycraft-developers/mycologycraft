@@ -67,9 +67,19 @@ public class ExampleDoubleMushroomBlock extends ExampleMushroomBlock //im doing 
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 			BlockPos blockpos = context.getClickedPos();
 			Level level = context.getLevel();
-			return (blockpos.getY() < (level.getMaxBuildHeight() - 1)) && level.getBlockState(blockpos.above()).canBeReplaced(context) //can place if there is space above (build limit +AND replaceable)
+			return (blockpos.getY() < (level.getMaxBuildHeight() - 1)) && level.getBlockState(blockpos.above()).canBeReplaced(context) 
+			&& upperIsUnobstructed(context, this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER)) //add this check as BlockItem placement only checks the placed block, not the upper block
+			//can place if there is space above (build limit +AND replaceable)
 					? super.getStateForPlacement(context) //returns default placement state (which is LOWER half)
 					: null;
+	}
+
+	protected boolean upperIsUnobstructed(BlockPlaceContext context, BlockState state) {
+		Player player = context.getPlayer();
+		CollisionContext collisioncontext = player == null ? CollisionContext.empty() : CollisionContext.of(player);
+		BlockPos upperpos = context.getClickedPos().above();
+		Level level = context.getLevel();
+		return (level.isUnobstructed(state, upperpos, collisioncontext)); //skip can survive check. this will always fail on placement logic but be valid after placement, assuming its correct
 	}
 
 	public static BlockState copyWaterloggedFrom(LevelReader level, BlockPos pos, BlockState state) {

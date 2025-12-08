@@ -38,14 +38,14 @@ public class ModBlocks {
                 BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM)
             ));
 
-		public static final DeferredBlock<ExampleMushroomBlock> EXAMPLE_COMPLEX_MUSHROOM_BLOCK = registerBlock("example_complex_mushroom_block",
-						() -> new ExampleMushroomBlock(
+		public static final DeferredBlock<ExampleComplexMushroomBlock> EXAMPLE_COMPLEX_MUSHROOM_BLOCK = registerBlock("example_complex_mushroom_block",
+						() -> new ExampleComplexMushroomBlock(
 								TreeFeatures.HUGE_RED_MUSHROOM,
 								BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM)
 						));
 
-		public static final DeferredBlock<ExampleDoubleMushroomBlock> EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK = registerBlock("example_complex_double_mushroom_block",
-						() -> new ExampleDoubleMushroomBlock(
+		public static final DeferredBlock<ExampleComplexDoubleMushroomBlock> EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK = registerBlock("example_complex_double_mushroom_block",
+						() -> new ExampleComplexDoubleMushroomBlock(
 								TreeFeatures.HUGE_BROWN_MUSHROOM,
 								BlockBehaviour.Properties.ofFullCopy(Blocks.BROWN_MUSHROOM)
 						));
