@@ -28,6 +28,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         doubleCrossBlockWithItem(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
 				blockWithComplexModel(ModBlocks.EXAMPLE_COMPLEX_MUSHROOM_BLOCK, "example_complex_mushroom_block");
 				doubleComplexBlockWithItem(ModBlocks.EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK);
+				doubleBlockWithFenceAndCustomTop(ModBlocks.EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK_ALT);
     }
 
     //registers a cube block with an item
@@ -102,6 +103,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 			//item
 			itemModels().withExistingParent(name, "item/generated").texture("layer0", capTextureTop.toString()); //this will look like crap either way, we need separate texture made by hand or smth
+		}
+
+		//register a double block with independent arbitrary models for upper and lower halves
+		private void doubleBlockWithCustomModels(DeferredBlock<?> deferredBlock, ModelFile lowerModel, ModelFile upperModel) {
+			getVariantBuilder(deferredBlock.get())
+					.partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.LOWER).modelForState()
+					.modelFile(lowerModel).addModel()
+					.partialState().with(ExampleDoubleMushroomBlock.HALF, DoubleBlockHalf.UPPER).modelForState()
+					.modelFile(upperModel).addModel();
+
+			//item
+			itemModels().withExistingParent(deferredBlock.getId().getPath(), "item/generated").texture("layer0", "mycologycraft:block/" + deferredBlock.getId().getPath() + "_stem"); //whatvs
+		}
+
+		//register a double block with fence base and custom top
+		private void doubleBlockWithFenceAndCustomTop(DeferredBlock<?> deferredBlock) {
+			
+			String modelName = deferredBlock.getId().getPath() + "_cap";
+			ModelFile upperModel = new ModelFile.UncheckedModelFile("mycologycraft:block/" + modelName);
+			
+			var name = deferredBlock.getId().getPath();
+			var stemTexture = modLoc("block/" + name + "_stem");
+			ModelFile stem = models().fencePost(name + "_stem", stemTexture);
+			doubleBlockWithCustomModels(deferredBlock, stem, upperModel);
 		}
 
     //helper

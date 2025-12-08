@@ -5,5 +5,6 @@
   "block.mycologycraft.example_mushroom_block": "Example Mushroom Block",
   "block.mycologycraft.example_double_mushroom_block": "Example Double Mushroom Block",
 	"block.mycologycraft.example_complex_mushroom_block": "Example Complex Mushroom Block",
-	"block.mycologycraft.example_complex_double_mushroom_block": "Example Complex Double Mushroom Block"
+	"block.mycologycraft.example_complex_double_mushroom_block": "Example Complex Double Mushroom Block",
+	"block.mycologycraft.example_complex_double_mushroom_block_alt": "Example Complex Double Mushroom Block Alt"
 }

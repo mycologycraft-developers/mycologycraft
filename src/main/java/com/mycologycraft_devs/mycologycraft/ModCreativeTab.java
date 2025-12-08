@@ -30,6 +30,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.EXAMPLE_DOUBLE_MUSHROOM_BLOCK);
 												output.accept(ModBlocks.EXAMPLE_COMPLEX_MUSHROOM_BLOCK);
 												output.accept(ModBlocks.EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK);
+												output.accept(ModBlocks.EXAMPLE_COMPLEX_DOUBLE_MUSHROOM_BLOCK_ALT);
                     }).build());
 
     //    Alternate method that can be used to add an item from elsewhere
